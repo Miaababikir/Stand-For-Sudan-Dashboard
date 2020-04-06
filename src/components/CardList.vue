@@ -75,7 +75,7 @@
             }
         },
         beforeMount() {
-            axios.get('http://jodeveloper.com/miaababikir/StandForSudan/public/api/donations')
+            axios.get('https://sfs-api.obay-dev.com/api/donations')
                 .then(response => {
                     console.log(response);
                     this.data = response.data;
@@ -85,7 +85,7 @@
         methods: {
             refreshData() {
                 let timerID = setInterval(() => {
-                    axios.get('http://jodeveloper.com/miaababikir/StandForSudan/public/api/donations')
+                    axios.get('https://sfs-api.obay-dev.com/api/donations')
                         .then(response => {
                             this.data = response.data;
                             console.log('Refreshed!')
