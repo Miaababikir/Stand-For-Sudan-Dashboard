@@ -1,147 +1,12 @@
 <template>
     <div id="app">
-        <div class="bg-gray-200">
+        <div class="bg-gray-200 font-roboto">
 
             <!-- Header -->
-            <div class="bg-pattern md:pt-20 pb-32 pt-12">
-                <div class="px-4 text-gray-200 text-center">
-                    <h1 class="font-bold text-5xl">✊🏾</h1>
-                    <h1 class="font-bold text-5xl">Stand For Sudan</h1>
-                    <p class="mb-1 text-gray-400">Build a beautiful and elegant tailwind forms.</p>
-                    <p class="mb-6 text-gray-500">Helps you to scaffold your forms structure without the need to repeat
-                        yourself</p>
-                    <a href="https://github.com/Miaababikir/Tailwind-Builder"
-                       class="px-4 py-2 bg-gray-300 text-gray-900 rounded inline-flex">
-                        <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">>
-                            <path d="M10 0a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 10 0"></path>
-                        </svg>
-                        <span class="ml-2">Github</span>
-                    </a>
-                </div>
+            <header-component />
 
-            </div>
             <div class="px-4 py-20 md:px-10 mx-auto w-full">
-                <div>
-                    <!-- Card stats -->
-                    <div class="flex flex-wrap">
-                        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                                <div class="flex-auto p-4">
-                                    <div class="flex flex-wrap">
-                                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                            <h5 class="text-gray-500 uppercase font-bold text-xs">
-                                                Traffic
-                                            </h5>
-                                            <span class="font-semibold text-xl text-gray-800">
-                          350,897
-                        </span>
-                                        </div>
-                                        <div class="relative w-auto pl-4 flex-initial">
-                                            <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
-                                                <i class="far fa-chart-bar"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm text-gray-500 mt-4">
-                      <span class="text-green-500 mr-2">
-                        <i class="fas fa-arrow-up"></i> 3.48%
-                      </span>
-                                        <span class="whitespace-no-wrap">
-                        Since last month
-                      </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                                <div class="flex-auto p-4">
-                                    <div class="flex flex-wrap">
-                                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                            <h5 class="text-gray-500 uppercase font-bold text-xs">
-                                                New users
-                                            </h5>
-                                            <span class="font-semibold text-xl text-gray-800">
-                          2,356
-                        </span>
-                                        </div>
-                                        <div class="relative w-auto pl-4 flex-initial">
-                                            <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-orange-500">
-                                                <i class="fas fa-chart-pie"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm text-gray-500 mt-4">
-                      <span class="text-red-500 mr-2">
-                        <i class="fas fa-arrow-down"></i> 3.48%
-                      </span>
-                                        <span class="whitespace-no-wrap">
-                        Since last week
-                      </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                                <div class="flex-auto p-4">
-                                    <div class="flex flex-wrap">
-                                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                            <h5 class="text-gray-500 uppercase font-bold text-xs">
-                                                Sales
-                                            </h5>
-                                            <span class="font-semibold text-xl text-gray-800">
-                          924
-                        </span>
-                                        </div>
-                                        <div class="relative w-auto pl-4 flex-initial">
-                                            <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-pink-500">
-                                                <i class="fas fa-users"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm text-gray-500 mt-4">
-                      <span class="text-orange-500 mr-2">
-                        <i class="fas fa-arrow-down"></i> 1.10%
-                      </span>
-                                        <span class="whitespace-no-wrap">
-                        Since yesterday
-                      </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                                <div class="flex-auto p-4">
-                                    <div class="flex flex-wrap">
-                                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                            <h5 class="text-gray-500 uppercase font-bold text-xs">
-                                                Performance
-                                            </h5>
-                                            <span class="font-semibold text-xl text-gray-800">
-                          49,65%
-                        </span>
-                                        </div>
-                                        <div class="relative w-auto pl-4 flex-initial">
-                                            <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-blue-500">
-                                                <i class="fas fa-percent"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm text-gray-500 mt-4">
-                      <span class="text-green-500 mr-2">
-                        <i class="fas fa-arrow-up"></i> 12%
-                      </span>
-                                        <span class="whitespace-no-wrap">
-                        Since last month
-                      </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <card-list />
                 <div class="flex flex-wrap mt-20">
                     <line-chart-component></line-chart-component>
                 </div>
@@ -477,10 +342,12 @@
 <script>
 
     import LineChartComponent from "./components/LineChart";
+    import HeaderComponent from "./components/Header";
+    import CardList from "./components/CardList";
 
     export default {
         name: 'App',
-        components: {LineChartComponent}
+        components: { HeaderComponent, CardList, LineChartComponent}
     }
 </script>
 
