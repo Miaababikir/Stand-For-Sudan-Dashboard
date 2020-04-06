@@ -150,7 +150,6 @@
                         .then(response => {
                             this.data = response.data;
                             this.resetChart();
-                            console.log('Refreshed!')
                         });
                 }, 60 * 1000);
             },

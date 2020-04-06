@@ -22,8 +22,6 @@
 
 <script>
 
-    import axios from 'axios';
-
     import LineChartComponent from "./components/LineChart";
     import HeaderComponent from "./components/Header";
     import CardList from "./components/CardList";

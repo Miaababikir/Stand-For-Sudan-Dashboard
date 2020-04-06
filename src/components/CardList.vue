@@ -77,7 +77,6 @@
         beforeMount() {
             axios.get('https://sfs-api.obay-dev.com/api/donations')
                 .then(response => {
-                    console.log(response);
                     this.data = response.data;
                 });
             this.refreshData();
@@ -88,7 +87,6 @@
                     axios.get('https://sfs-api.obay-dev.com/api/donations')
                         .then(response => {
                             this.data = response.data;
-                            console.log('Refreshed!')
                         });
                 }, 60 * 1000);
             },
