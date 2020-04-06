@@ -6,7 +6,7 @@
             <header-component/>
 
             <div class="px-4 py-20 md:px-10 mx-auto w-full">
-                <card-list :data="data"/>
+                <card-list/>
                 <div class="flex flex-wrap mt-20">
                     <line-chart-component></line-chart-component>
                 </div>
@@ -33,18 +33,6 @@
     export default {
         name: 'App',
         components: {HeaderComponent, CardList, LineChartComponent},
-        data() {
-            return {
-                data: {},
-            }
-        },
-        beforeMount() {
-            axios.get('http://127.0.0.1:8000/api/donations')
-                .then(response => {
-                    console.log(response);
-                    this.data = response.data;
-                });
-        }
     }
 </script>
 
