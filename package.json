@@ -7,6 +7,8 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.4",
     "tailwindcss": "^1.2.0",

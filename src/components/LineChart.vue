@@ -1,136 +1,177 @@
 <template>
-  <div class="w-full md:w-3/4 mx-auto mb-12 xl:mb-0 px-4">
-    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-gray-900">
-      <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-        <div class="flex flex-wrap items-center">
-          <div class="relative w-full max-w-full flex-grow flex-1">
-            <h6 class="uppercase text-gray-200 mb-1 text-xs font-semibold">
-              Overview
-            </h6>
-            <h2 class="text-white text-xl font-semibold">
-              Sales value
-            </h2>
-          </div>
+    <div class="w-full md:w-3/4 mx-auto mb-12 xl:mb-0 px-4">
+        <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-gray-900">
+            <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+                <div class="flex flex-wrap items-center">
+                    <div class="relative w-full max-w-full flex-grow flex-1">
+                        <h6 class="uppercase text-gray-200 mb-1 text-xs font-semibold">
+                            Overview
+                        </h6>
+                        <h2 class="text-white text-xl font-semibold">
+                            Donations
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 flex-auto">
+                <!-- Chart -->
+                <div class="relative" style="height:350px">
+                    <canvas id="line-chart"></canvas>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="p-4 flex-auto">
-        <!-- Chart -->
-        <div class="relative" style="height:350px">
-          <canvas id="line-chart"></canvas>
-        </div>
-      </div>
     </div>
-  </div>
 </template>
 <script>
-import Chart from "chart.js";
+    import Chart from "chart.js";
+    import axios from "axios";
 
-export default {
-  mounted: function() {
-    this.$nextTick(function() {
-      var config = {
-        type: "line",
-        data: {
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July"
-          ],
-          datasets: [
-            {
-              label: new Date().getFullYear(),
-              backgroundColor: "#4c51bf",
-              borderColor: "#4c51bf",
-              data: [65, 78, 66, 44, 56, 67, 75],
-              fill: false
-            },
-            {
-              label: new Date().getFullYear() - 1,
-              fill: false,
-              backgroundColor: "#ed64a6",
-              borderColor: "#ed64a6",
-              data: [40, 68, 86, 74, 56, 60, 87]
+    export default {
+        data() {
+            return {
+                data: [],
+                chart: {},
+                config: {
+                    type: "line",
+                    data: {},
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        title: {
+                            display: false,
+                            text: "Donations",
+                            fontColor: "white",
+                        },
+                        legend: {
+                            labels: {
+                                fontColor: "white"
+                            },
+                            align: "end",
+                            position: "bottom"
+                        },
+                        tooltips: {
+                            mode: "index",
+                            intersect: false
+                        },
+                        hover: {
+                            mode: "nearest",
+                            intersect: true
+                        },
+                        scales: {
+                            xAxes: [
+                                {
+                                    ticks: {
+                                        fontColor: "rgba(255,255,255,.7)"
+                                    },
+                                    display: true,
+                                    scaleLabel: {
+                                        display: false,
+                                        labelString: "Month",
+                                        fontColor: "white"
+                                    },
+                                    gridLines: {
+                                        display: false,
+                                        borderDash: [2],
+                                        borderDashOffset: [2],
+                                        color: "rgba(33, 37, 41, 0.3)",
+                                        zeroLineColor: "rgba(0, 0, 0, 0)",
+                                        zeroLineBorderDash: [2],
+                                        zeroLineBorderDashOffset: [2]
+                                    }
+                                }
+                            ],
+                            yAxes: [
+                                {
+                                    ticks: {
+                                        fontColor: "rgba(255,255,255,.7)"
+                                    },
+                                    display: true,
+                                    scaleLabel: {
+                                        display: false,
+                                        labelString: "Value",
+                                        fontColor: "white"
+                                    },
+                                    gridLines: {
+                                        borderDash: [3],
+                                        borderDashOffset: [3],
+                                        drawBorder: false,
+                                        color: "rgba(255, 255, 255, 0.15)",
+                                        zeroLineColor: "rgba(33, 37, 41, 0)",
+                                        zeroLineBorderDash: [2],
+                                        zeroLineBorderDashOffset: [2]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
             }
-          ]
         },
-        options: {
-          maintainAspectRatio: false,
-          responsive: true,
-          title: {
-            display: false,
-            text: "Sales Charts",
-            fontColor: "white",
-          },
-          legend: {
-            labels: {
-              fontColor: "white"
+        beforeMount() {
+            axios.get('http://127.0.0.1:8000/api/donations')
+                .then(response => {
+
+                    this.data = response.data;
+
+                    this.$nextTick(() => {
+                        this.config.data = {
+                            labels: this.dates.reverse(),
+                            datasets: [
+                                {
+                                    label: new Date().getFullYear(),
+                                    backgroundColor: "#4fd1c5",
+                                    borderColor: "#4fd1c5",
+                                    data: this.totals.reverse(),
+                                    fill: false
+                                },
+                            ]
+                        };
+
+                        let ctx = document.getElementById("line-chart").getContext("2d");
+
+                        this.chart = new Chart(ctx, this.config);
+                    });
+                });
+
+            this.refreshData();
+        },
+        computed: {
+            totals() {
+                return this.data.donations.map(donation => donation.total_amount);
             },
-            align: "end",
-            position: "bottom"
-          },
-          tooltips: {
-            mode: "index",
-            intersect: false
-          },
-          hover: {
-            mode: "nearest",
-            intersect: true
-          },
-          scales: {
-            xAxes: [
-              {
-                ticks: {
-                  fontColor: "rgba(255,255,255,.7)"
-                },
-                display: true,
-                scaleLabel: {
-                  display: false,
-                  labelString: "Month",
-                  fontColor: "white"
-                },
-                gridLines: {
-                  display: false,
-                  borderDash: [2],
-                  borderDashOffset: [2],
-                  color: "rgba(33, 37, 41, 0.3)",
-                  zeroLineColor: "rgba(0, 0, 0, 0)",
-                  zeroLineBorderDash: [2],
-                  zeroLineBorderDashOffset: [2]
-                }
-              }
-            ],
-            yAxes: [
-              {
-                ticks: {
-                  fontColor: "rgba(255,255,255,.7)"
-                },
-                display: true,
-                scaleLabel: {
-                  display: false,
-                  labelString: "Value",
-                  fontColor: "white"
-                },
-                gridLines: {
-                  borderDash: [3],
-                  borderDashOffset: [3],
-                  drawBorder: false,
-                  color: "rgba(255, 255, 255, 0.15)",
-                  zeroLineColor: "rgba(33, 37, 41, 0)",
-                  zeroLineBorderDash: [2],
-                  zeroLineBorderDashOffset: [2]
-                }
-              }
-            ]
-          }
+            dates() {
+                return this.data.donations.map(donation => donation.created_at);
+            }
+        },
+        methods: {
+            refreshData() {
+                let timerID = setInterval(() => {
+                    axios.get('http://127.0.0.1:8000/api/donations')
+                        .then(response => {
+                            this.data = response.data;
+                            this.resetChart();
+                            console.log('Refreshed!')
+                        });
+                }, 60 * 1000);
+            },
+            resetChart() {
+                this.config.data = {
+                    labels: this.dates.reverse(),
+                    datasets: [
+                        {
+                            label: new Date().getFullYear(),
+                            backgroundColor: "#4fd1c5",
+                            borderColor: "#4fd1c5",
+                            data: this.totals.reverse(),
+                            fill: false
+                        },
+                    ]
+                };
+
+                this.chart.data.labels = this.config.data.labels;
+                this.chart.data.datasets = this.config.data.datasets;
+                this.chart.update();
+            }
         }
-      };
-      var ctx = document.getElementById("line-chart").getContext("2d");
-      window.myLine = new Chart(ctx, config);
-    });
-  }
-};
+    };
 </script>
