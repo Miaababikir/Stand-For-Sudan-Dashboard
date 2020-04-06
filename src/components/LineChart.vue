@@ -108,7 +108,7 @@
             }
         },
         beforeMount() {
-            axios.get('http://127.0.0.1:8000/api/donations')
+            axios.get('http://jodeveloper.com/miaababikir/StandForSudan/public/api/donations')
                 .then(response => {
 
                     this.data = response.data;
@@ -146,7 +146,7 @@
         methods: {
             refreshData() {
                 let timerID = setInterval(() => {
-                    axios.get('http://127.0.0.1:8000/api/donations')
+                    axios.get('http://jodeveloper.com/miaababikir/StandForSudan/public/api/donations')
                         .then(response => {
                             this.data = response.data;
                             this.resetChart();
