@@ -13,7 +13,7 @@
             </div>
             <footer class="bg-white">
                 <div class="px-8 py-6 text-gray-800 text-center">
-                    <p>Built with <span class="text-red-600">❤️</span> By @<a class="text-blue-600" href="https://www.facebook.com/OmegaTeamSD">Omega</a> - Hosted by @<a class="text-blue-600" href="https://twitter.com/obayhamid">Obiefy</a></p>
+                    <p>Built with <span class="text-red-600">❤️</span> By @<a class="text-blue-600" href="https://www.facebook.com/OmegaTeamSD">Omega</a> - And @<a class="text-blue-600" href="https://twitter.com/obayhamid">Obiefy</a></p>
                 </div>
             </footer>
         </div>
@@ -29,6 +29,9 @@
     export default {
         name: 'App',
         components: {HeaderComponent, CardList, LineChartComponent},
+        mounted() {
+            this.$ga.page('/');
+        }
     }
 </script>
 
