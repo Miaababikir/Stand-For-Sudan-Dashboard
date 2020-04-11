@@ -47,13 +47,13 @@
             <div class="text-center">
                 <h2 class="text-3xl text-gray-700">آخر التبرعات</h2>
             </div>
-            <carousel class="max-w-6xl px-4 py-4 mx-auto mt-4" dir="ltr" :paginationEnabled="false" :perPage="2">
+            <carousel class="max-w-6xl px-4 py-4 mx-auto mt-4" dir="ltr" :perPage="1" :perPageCustom="[[340, 2], [1024, 3]]" paginationActiveColor="#2d3748" paginationColor="#cbd5e0">
                 <slide class="h-32" dir="rtl" v-for="donation in data.donations">
                     <div class="flex flex-col justify-center px-4 py-4 bg-white shadow-lg rounded mx-2">
                         <div>
-                            <p class="text-3xl font-semibold text-center text-gray-700">{{ donation.donation | moneyFormat | toArabic}}<span
+                            <p class=" font-semibold text-center text-gray-700 text-lg md:text-3xl">{{ donation.donation | moneyFormat | toArabic}}<span
                                     class="text-xs text-teal-500"> جنيه</span></p>
-                            <p class="text-lg text-center text-gray-500">{{ donation.created_at}}</p>
+                            <p class="text-sm md:text-lg text-center text-gray-500">{{ donation.created_at}}</p>
                         </div>
                     </div>
                 </slide>
@@ -112,7 +112,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>
