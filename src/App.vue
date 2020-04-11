@@ -1,6 +1,6 @@
 <template>
-    <div id="app">
-        <div class="bg-gray-200 font-roboto">
+    <div id="app" dir="rtl">
+        <div class="bg-gray-200 font-tajawal">
 
             <!-- Header -->
             <header-component/>

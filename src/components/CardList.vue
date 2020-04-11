@@ -3,78 +3,82 @@
         <div>
             <!-- Card stats -->
             <div class="flex flex-wrap">
-                <div class="w-full lg:w-6/12 xl:w-1/3 px-4">
-                    <div class="flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg px-3 py-5">
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-wrap">
-                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    <h5 class="text-gray-500 uppercase font-bold text-xs">
-                                        Donations Total
-                                    </h5>
-                                    <span class="font-semibold text-xl text-gray-800">{{ data.donations_total | moneyFormat }} <span
-                                            class="text-xs text-teal-500">SDG</span></span>
-                                </div>
-                                <div class="relative w-auto pl-4 flex-initial">
+                <div class="w-full lg:w-1/2 xl:w-1/2 px-4">
+                    <div class="flex flex-col items-center min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg px-3 py-5">
+                        <div class="p-4">
+                            <div class="flex flex-col items-center w-full pr-4 max-w-full">
+                                <div class="w-auto">
                                     <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
                                         <i class="fa fa-gifts"></i>
                                     </div>
                                 </div>
+                                <h5 class="text-gray-700 uppercase font-bold text-2xl mt-5">
+                                    مجموع التبرعات
+                                </h5>
+                                <span class="font-semibold text-xl text-gray-700">{{ data.donations_total | moneyFormat | toArabic }} <span
+                                        class="text-xs text-teal-500">جنيه</span></span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="w-full lg:w-6/12 xl:w-1/3 px-4">
-                    <div class="flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg px-3 py-5">
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-wrap">
-                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    <h5 class="text-gray-500 uppercase font-bold text-xs">
-                                        Last Donation
-                                    </h5>
-                                    <span class="font-semibold text-xl text-gray-800">{{ data.last_donation | moneyFormat }} <span
-                                            class="text-xs text-teal-500">SDG</span></span>
-                                </div>
-                                <div class="relative w-auto pl-4 flex-initial">
+
+                <div class="w-full lg:w-1/2 xl:w-1/2 px-4">
+                    <div class="flex flex-col items-center min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg px-3 py-5">
+                        <div class="p-4">
+                            <div class="flex flex-col items-center w-full pr-4 max-w-full">
+                                <div class="w-auto">
                                     <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-blue-500">
-                                        <i class="fa fa-chart-bar"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full lg:w-6/12 xl:w-1/3 px-4">
-                    <div class="flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg px-3 py-5">
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-wrap">
-                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    <h5 class="text-gray-500 uppercase font-bold text-xs">
-                                        No. of donations today
-                                    </h5>
-                                    <span class="font-semibold text-xl text-gray-800">{{ data.today_total_donators }} <span
-                                            class="text-xs text-teal-500">Donator</span></span>
-                                </div>
-                                <div class="relative w-auto pl-4 flex-initial">
-                                    <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-orange-500">
                                         <i class="fa fa-users"></i>
                                     </div>
                                 </div>
+                                <h5 class="text-gray-700 uppercase font-bold text-2xl mt-5">
+                                    مجموع المتبرعين
+                                </h5>
+                                <span class="font-semibold text-xl text-gray-700">{{ data.total_donators.toString() | toArabic }} <span
+                                        class="text-xs text-teal-500">زول</span></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="mt-20">
+            <div class="text-center">
+                <h2 class="text-3xl text-gray-700">آخر التبرعات</h2>
+            </div>
+            <carousel class="max-w-6xl px-4 py-4 mx-auto mt-4" dir="ltr" :paginationEnabled="false" :perPage="2">
+                <slide class="h-32" dir="rtl" v-for="donation in data.donations">
+                    <div class="flex flex-col justify-center px-4 py-4 bg-white shadow-lg rounded mx-2">
+                        <div>
+                            <p class="text-3xl font-semibold text-center text-gray-700">{{ donation.donation | moneyFormat | toArabic}}<span
+                                    class="text-xs text-teal-500"> جنيه</span></p>
+                            <p class="text-lg text-center text-gray-500">{{ donation.created_at}}</p>
+                        </div>
+                    </div>
+                </slide>
+            </carousel>
+        </div>
     </div>
 </template>
 
 <script>
+
     import axios from 'axios';
+    import {Carousel, Slide} from 'vue-carousel';
 
     export default {
+        components: {
+            Carousel,
+            Slide
+        },
         data() {
             return {
-                data: {}
+                data: {
+                    donations: [],
+                    donations_total: 0,
+                    total_donators: '0'
+                }
             }
         },
         beforeMount() {
@@ -87,6 +91,13 @@
         filters: {
             moneyFormat(value) {
                 return new Intl.NumberFormat().format(value);
+            },
+            toArabic(value) {
+                let numbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+
+                return value.replace(/[0-9]/g, (w) => {
+                    return numbers[+w]
+                });
             }
         },
         methods: {
