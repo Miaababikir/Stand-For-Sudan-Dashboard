@@ -4,11 +4,8 @@
             <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
                 <div class="flex flex-wrap items-center">
                     <div class="relative w-full max-w-full flex-grow flex-1">
-                        <h6 class="uppercase text-gray-200 mb-1 text-xs font-semibold">
-                            Overview
-                        </h6>
                         <h2 class="text-white text-xl font-semibold">
-                            Donations
+                            آخر التبرعات
                         </h2>
                     </div>
                 </div>

@@ -1,7 +1,8 @@
 module.exports = {
     theme: {
         fontFamily: {
-          'roboto': ['Roboto']
+          'roboto': ['Roboto'],
+          'tajawal': ['Tajawal'],
         },
         extend: {},
     },

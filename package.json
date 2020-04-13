@@ -13,7 +13,8 @@
     "core-js": "^3.6.4",
     "tailwindcss": "^1.2.0",
     "vue": "^2.6.11",
-    "vue-analytics": "^5.22.1"
+    "vue-analytics": "^5.22.1",
+    "vue-carousel": "^0.18.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.3.0",
