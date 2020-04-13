@@ -48,8 +48,8 @@
                 <h2 class="text-3xl text-gray-700">آخر التبرعات</h2>
             </div>
             <carousel class="max-w-6xl px-4 py-4 mx-auto mt-4" dir="ltr" :perPage="1" :perPageCustom="[[340, 2], [1024, 3]]" paginationActiveColor="#2d3748" paginationColor="#cbd5e0">
-                <slide class="h-32" dir="rtl" v-for="donation in data.donations">
-                    <div class="flex flex-col justify-center px-4 py-4 bg-white shadow-lg rounded mx-2">
+                <slide dir="rtl" v-for="donation in data.donations">
+                    <div class="flex flex-col justify-center px-4 py-4 my-4 bg-white shadow-lg rounded mx-2">
                         <div>
                             <p class=" font-semibold text-center text-gray-700 text-lg md:text-3xl">{{ donation.donation | moneyFormat | toArabic}}<span
                                     class="text-xs text-teal-500"> جنيه</span></p>
